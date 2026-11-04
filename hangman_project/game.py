@@ -17,7 +17,3 @@ class HangmanGame:
         return progress
 
 
-
-juego = HangmanGame("gato")
-juego.guessed_letters = ["a", "t"]
-print(juego.display_progress())
