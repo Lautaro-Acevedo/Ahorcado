@@ -19,7 +19,7 @@ class HangmanGame:
             else:
                 progress += "_ "
 
-        print(progress.strip())
+        return progress
 
     def process_guess(self, letra):
         if letra in self.word:
