@@ -26,6 +26,9 @@ while True:
     print(progreso)
     print(f"Errores: {letraPalabra.errors}/{letraPalabra.max_errors}")
 
+    print(f"Letras adivinadas: {letraPalabra.guessed_letters}")
+    print(f"Intentos restantes: {letraPalabra.max_errors - letraPalabra.errors}")
+
     if "_" not in progreso:
         print("Ganaste")
         break
