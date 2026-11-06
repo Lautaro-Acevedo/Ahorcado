@@ -32,3 +32,16 @@ class HangmanGame:
             self.used_letters.append(letra)
             self.errors += 1
             return False
+    
+    def is_won(self):
+        progreso = self.display_progress()
+        if "_" not in progreso:
+            return True
+        else:
+            return False
+
+    def is_lost(self):
+        if self.errors >= self.max_errors:
+            return True
+        else:
+            return False

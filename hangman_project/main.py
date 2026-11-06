@@ -6,7 +6,7 @@ letraPalabra = HangmanGame(palabra)
 print("_______BIENVENIDO AL AHORCADO_________")
 print(letraPalabra.display_progress())
 
-while True:
+while not letraPalabra.is_won() and not letraPalabra.is_lost():
     letra = input("Ingrese una letra: ")
 
     if len(letra) != 1:
@@ -30,11 +30,8 @@ while True:
     print(f"Letras adivinadas: {letraPalabra.guessed_letters}")
     print(f"Intentos restantes: {letraPalabra.max_errors - letraPalabra.errors}")
 
-    if "_" not in progreso:
-        print("Ganaste")
-        break
-    
-    if letraPalabra.errors >= letraPalabra.max_errors:
-        print("Fin del juego")
-        print(f"La palabra secreta era: {palabra}")
-        break
+if letraPalabra.is_won():
+    print("¡Ganaste!")
+else:
+    print("Fin del juego")
+    print(f"La palabra secreta era: {palabra}")
