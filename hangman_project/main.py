@@ -16,15 +16,16 @@ while True:
     if not letra.isalpha():
         print("El valor ingresado no es una letra")
         continue
-
-    if letraPalabra.process_guess(letra):
-        print("!!Felicidades encontraste una letra!!")
+    if letra not in letraPalabra.used_letters:
+        if letraPalabra.process_guess(letra):
+            print("!!Felicidades encontraste una letra!!")
+        else:
+            print("La letra no pertenece a la palabra ")
     else:
-        print("La letra no pertenece a la palabra ")
-
+        print("Esa letra ya la ingresaste")
+    
     progreso = letraPalabra.display_progress()
     print(progreso)
-    print(f"Errores: {letraPalabra.errors}/{letraPalabra.max_errors}")
 
     print(f"Letras adivinadas: {letraPalabra.guessed_letters}")
     print(f"Intentos restantes: {letraPalabra.max_errors - letraPalabra.errors}")

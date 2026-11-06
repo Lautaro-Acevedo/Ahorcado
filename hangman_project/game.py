@@ -5,6 +5,7 @@ class HangmanGame:
     def __init__(self, word):
         self.word = word
         self.guessed_letters = []
+        self.used_letters = []
         self.max_errors = 6
         self.errors = 0
 
@@ -25,7 +26,9 @@ class HangmanGame:
         if letra in self.word:
             if letra not in self.guessed_letters:
                 self.guessed_letters.append(letra)
+                self.used_letters.append(letra)
             return True
         else:
+            self.used_letters.append(letra)
             self.errors += 1
             return False
