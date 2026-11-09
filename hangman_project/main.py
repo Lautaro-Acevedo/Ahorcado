@@ -1,4 +1,16 @@
 #!/usr/bin/env python3
+
+# Definimos la lista con todos los estados del dibujo
+AHORCADO_DIBUJOS = [
+    "  +---+\n  |   |\n      |\n      |\n      |\n      |\n=========",  # 0 fallos
+    "  +---+\n  |   |\n  O   |\n      |\n      |\n      |\n=========",  # 1 fallo
+    "  +---+\n  |   |\n  O   |\n  |   |\n      |\n      |\n=========",  # 2 fallos
+    "  +---+\n  |   |\n  O   |\n /|   |\n      |\n      |\n=========",  # 3 fallos
+    "  +---+\n  |   |\n  O   |\n /|\\  |\n      |\n      |\n=========",  # 4 fallos
+    "  +---+\n  |   |\n  O   |\n /|\\  |\n /    |\n      |\n=========",  # 5 fallos
+    "  +---+\n  |   |\n  O   |\n /|\\  |\n / \\  |\n      |\n========="   # 6 fallos
+]
+
 from game import HangmanGame # importamos la clase HangmanGame
 import utils # importamos el archivo utils
 
@@ -6,7 +18,14 @@ import utils # importamos el archivo utils
 palabra = utils.get_random_word()  
 letraPalabra = HangmanGame(palabra)
 
+# Creamos una función para imprimir el dibujo en pantalla
+def mostrar_ahorcado(errores):
+    # Imprime el dibujo correspondiente al número de fallos (0 al 6)
+    if 0 <= errores < len(AHORCADO_DIBUJOS):
+        print(AHORCADO_DIBUJOS[errores])
+
 print("_______BIENVENIDO AL AHORCADO_________")
+mostrar_ahorcado(letraPalabra.errors)
 print(letraPalabra.display_progress()) # imprimimos las celdas de la palabra a adivinar 
 
 # No termina el juego hasta que el jugador gane o pierda
@@ -30,6 +49,7 @@ while not letraPalabra.is_won() and not letraPalabra.is_lost():
     else:
         print("Esa letra ya la ingresaste")
     
+    mostrar_ahorcado(letraPalabra.errors)
     progreso = letraPalabra.display_progress() # Devolvemos el progreso nuevamente de la palabra
     print(progreso)
 
